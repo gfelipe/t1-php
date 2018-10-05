@@ -35,7 +35,7 @@
                     <img src="/assets/img/logo88.png" alt="Mobirise" title="" media-simple="true" style="height: 3.3rem;">
                 </a>
             </span>
-            <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5" href="index.php">
+            <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5" href="/">
                     Infinity
                 </a></span>
         </div>

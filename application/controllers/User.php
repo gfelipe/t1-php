@@ -4,10 +4,12 @@ class User extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('order_model');
     }
 
     public function register() {
         $data = [];
+
         $this->load->view('templates/header', $data);
         $this->load->view('user/register', $data);
         $this->load->view('templates/footer', $data);
@@ -26,49 +28,46 @@ class User extends CI_Controller {
             $this->load->view('user/register', $data);
             $this->load->view('templates/footer', $data);
         } else {
+            $this->user_model->save_user($name, $email, $password);
 
+            $sessionUser = array('user' => $name, 'logged_in' => true);
+            $this->session->set_userdata($sessionUser);
+
+            redirect('/', 'refresh');
         }
 
     }
 
     public function edit() {
+        $data['userdata'] = $this->session->userdata();
+
+        $data['user'] = $this->user_model->get_user($data['userdata']['user.id']);
+
         $this->load->view('templates/header', $data);
         $this->load->view('user/edit', $data);
         $this->load->view('templates/footer', $data);
     }
 
     public function update() {
-        $this->load->view('templates/header', $data);
-        $this->load->view('login/index', $data);
-        $this->load->view('templates/footer', $data);
+        $data['userdata'] = $this->session->userdata();
+
+        $name = $this->input->post('name');
+        $email = $this->input->post('email');
+
+        $data['user'] = $this->user_model->update_user($data['userdata']['user.id'], $name, $email);
+
+        redirect('/', 'refresh');
     }
-
-
 
     public function orders() {
-        $email = $this->input->post('email', TRUE);
-        $password = $this->input->post('password', TRUE);
 
-        $user = $this->user_model->get_user($email, $password);
+        $data['userdata'] = $this->session->userdata();
+        $data['orders'] = $this->order_model->get_orders($data['userdata']['user.id']);
 
-        if ($user) {
-            $sessionUser = array('user' => $user['name'], 'logged_in' => true);
-            $this->session->set_userdata($sessionUser);
-            redirect('/', 'refresh');
-        } else {
 
-            $data['error'] = true;
-            $data['errorMsg'] = "Usuário ou senha inválidos.";
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('login/index', $data);
-            $this->load->view('templates/footer', $data);
-        }
-    }
-
-    public function logout() {
-        $this->session->sess_destroy();
-        redirect('/', 'refresh');
+        $this->load->view('templates/header', $data);
+        $this->load->view('user/orders', $data);
+        $this->load->view('templates/footer', $data);
     }
 
 }

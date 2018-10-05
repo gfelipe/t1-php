@@ -43,32 +43,5 @@
 </style>
 
 <section class="mbr-gallery cid-qyXC3wOLIJ" once="shops" id="shop2-5h" data-rv-view="2472">
-    <div class="login-form">
-        <div class="main-div">
-            <div class="panel">
-                <h2>Alteração de dados</h2>
-                <p>Por favor, informe seus dados</p>
-            </div>
-            <?php
-            if (isset($error)) {
-                echo
-                    "<div class='alert-danger errorDiv'>"
-                    . $error .
-                    "</div>";
-            }
-            ?>
-            <form id="Login" action="/user/update" method="POST">
-
-                <div class="form-group">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Nome" value="<?php echo $user['name']?>">
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?php echo $user['email']?>">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Atualizar</button>
-
-            </form>
-        </div>
-    </div>
+    <?php print_r($orders) ?>
 </section>

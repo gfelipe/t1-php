@@ -24,10 +24,10 @@ class Login extends CI_Controller {
         $email = $this->input->post('email', TRUE);
         $password = $this->input->post('password', TRUE);
 
-        $user = $this->user_model->get_user($email, $password);
+        $user = $this->user_model->find_user($email, $password);
 
         if ($user) {
-            $sessionUser = array('user' => $user['name'], 'logged_in' => true);
+            $sessionUser = array('user' => $user['name'], 'user.id' => $user['id'], 'logged_in' => true);
             $this->session->set_userdata($sessionUser);
             redirect('/', 'refresh');
         } else {
