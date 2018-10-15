@@ -120,6 +120,8 @@
 <script src="/assets/theme/js/script.js"></script>
 <script src="/assets/mobirise-gallery/player.min.js"></script>
 <script src="/assets/mobirise-gallery/script.js"></script>
+<script src="/assets/js/jquery.mask.js"></script>
+<script src="/assets/js/app.js"></script>
 
 
 </body>

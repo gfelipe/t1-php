@@ -1,47 +1,55 @@
 
 <style>
-    .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
-    .panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+    .table-responsive{width: 100%;}
 
-    .login-form .form-control {
-        border: 1px solid #d4d4d4;
-        border-radius: 4px;
-        font-size: 14px;
-        height: 50px;
-        line-height: 50px;
-    }
-    .main-div {
-        border-radius: 2px;
-        margin: 10px auto 30px;
-        max-width: 38%;
-        padding: 50px 70px 70px 71px;
-    }
-
-    .login-form .form-group {
-        margin-bottom:10px;
-    }
-    .login-form{ text-align:center;}
-    .forgot a, .unregistered a {
-        text-decoration: underline;
-        color: #777777;
-    }
-    .login-form  .btn.btn-primary {
-        font-size: 14px;
-        width: 100%;
-        height: 50px;
-        line-height: 50px;
-        padding: 0;
-    }
-    .forgot, .unregistered {
-        text-align: left;
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-    .back a {color: #444444; font-size: 13px;text-decoration: none;}
-    .errorDiv { margin-bottom: 10px; background-color: #f8d7da; }
-    .btn {margin: .4rem 0;}
 </style>
 
-<section class="mbr-gallery cid-qyXC3wOLIJ" once="shops" id="shop2-5h" data-rv-view="2472">
-    <?php print_r($orders) ?>
+<section class="header6 cid-qyXAPsqKdO" id="header6-5c" data-rv-view="2431">
+    <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(0, 0, 0);">
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6 col-md-8 align-center">
+
+                <h2 class="mbr-section-title align-center mbr-fonts-style mbr-bold mbr-white display-1">Pedidos</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-gallery cid-qyXC3wOLIJ" id="shop2-5h">
+    <div class="container">
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th class="">#</th>
+                            <th class="">Produto</th>
+                            <th class="">Data</th>
+                            <th class="">Preço</th>
+                            <th class="">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($orders as $idx=>$order): ?>
+                            <tr>
+                                <td><a href="/user/orders/<?php echo $order['id']?>"><?php echo str_pad($order['id'], 5, "0", STR_PAD_LEFT)?></a></td>
+                                <td><?php echo $order['item']?></td>
+                                <td><?php echo $order['purchaseDate']?></td>
+                                <td>R$ <?php echo $order['amount']?></td>
+                                <?php if($order['status'] == "PROCESSING"): ?>
+                                    <td><span class="badge badge-secondary">Processando</span></td>
+                                <?php elseif($order['status'] == "SHIPPED"): ?>
+                                    <td><span class="badge badge-success">Enviado</span></td>
+                                <?php else: ?>
+                                    <td><span class="badge badge-primary">Novo</span></td>
+                                <?php endif; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </section>

@@ -12,10 +12,7 @@ class Login extends CI_Controller {
         if (isset($userdata['logged_in']) && $userdata['logged_in']) {
             redirect('/', 'refresh');
         } else {
-            $data = (object)[];
-            $this->load->view('templates/header', $data);
-            $this->load->view('login/index', $data);
-            $this->load->view('templates/footer', $data);
+            $this->renderPage('login/index', []);
         }
 
     }
@@ -32,10 +29,7 @@ class Login extends CI_Controller {
             redirect('/', 'refresh');
         } else {
             $data['error'] = "Usuário ou senha inválidos.";
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('login/index', $data);
-            $this->load->view('templates/footer', $data);
+            $this->renderPage('login/index', $data);
         }
     }
 
@@ -44,4 +38,9 @@ class Login extends CI_Controller {
         redirect('/', 'refresh');
     }
 
+    private function renderPage($page, $data) {
+        $this->load->view('templates/header', $data);
+        $this->load->view($page, $data);
+        $this->load->view('templates/footer', $data);
+    }
 }

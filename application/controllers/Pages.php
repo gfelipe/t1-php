@@ -11,9 +11,13 @@ class Pages extends CI_Controller {
         $data['userdata'] = $this->session->userdata();
 
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/'.$page, $data);
-        $this->load->view('templates/footer', $data);
+        $this->renderPage('pages/'.$page, $data);
 
+    }
+
+    private function renderPage($page, $data) {
+        $this->load->view('templates/header', $data);
+        $this->load->view($page, $data);
+        $this->load->view('templates/footer', $data);
     }
 }

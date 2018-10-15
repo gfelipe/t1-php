@@ -61,6 +61,7 @@ $route['login'] = 'login';
 $route['register'] = 'user/register';
 $route['user/save'] = 'user/save';
 $route['user/edit'] = 'user/edit';
+$route['user/orders/(:any)'] = 'order/view/$1';
 $route['user/orders'] = 'user/orders';
 $route['user/favorites'] = 'user/favorites';
 
