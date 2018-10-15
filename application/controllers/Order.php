@@ -25,6 +25,29 @@ class Order extends CI_Controller {
         $this->renderPage('user/order', $data);
     }
 
+    public function buy($productId) {
+        $data['userdata'] = $this->session->userdata();
+        $data['user'] = $this->user_model->get_user($data['userdata']['user.id']);
+
+        $product = $this->product_model->get_product($productId);
+
+        $item = array(
+            'name' => $product['name'],
+            'description' => $product['description'],
+            'price' => $product['price'],
+            'image' => $product['image'],
+            'product_id' => $product['id'],
+        );
+
+        $data['item'] = $item;
+        $order['amount'] = $item['price'];
+
+        $data['order'] = $order;
+
+
+        $this->renderPage('user/order', $data);
+    }
+
     private function renderPage($page, $data) {
         $this->load->view('templates/header', $data);
         $this->load->view($page, $data);

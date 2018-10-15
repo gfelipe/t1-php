@@ -81,3 +81,21 @@
         </div>
     </nav>
 </section>
+<style>
+    .alert-fix {
+        margin-top: 76px; margin-bottom: 0px;
+    }
+</style>
+<?php if($this->session->flashdata('message')): ?>
+    <div class="alert alert-success alert-fix" role="alert">
+        <?php echo $this->session->flashdata('message') ?>
+    </div>
+<?php elseif($this->session->flashdata('warning_message')): ?>
+    <div class="alert alert-warning alert-fix" role="alert">
+        <?php echo $this->session->flashdata('warning_message') ?>
+    </div>
+<?php elseif($this->session->flashdata('error_message')): ?>
+    <div class="alert alert-danger alert-fix" role="alert">
+        <?php echo $this->session->flashdata('error_message') ?>
+    </div>
+<?php endif;?>

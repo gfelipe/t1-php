@@ -1,18 +1,17 @@
 <?php
 class Pages extends CI_Controller {
+
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('product_model');
+    }
+
     public function view($page='home') {
-        if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
-        {
-                // Whoops, we don't have a page for that!
-                show_404();
-        }
 
-        $data['title'] = ucfirst($page); // Capitalize the first letter
         $data['userdata'] = $this->session->userdata();
+        $data['products'] = $this->product_model->get_product();
 
-
-        $this->renderPage('pages/'.$page, $data);
-
+        $this->renderPage('pages/home', $data);
     }
 
     private function renderPage($page, $data) {

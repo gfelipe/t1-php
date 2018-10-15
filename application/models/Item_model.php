@@ -5,4 +5,8 @@ class Item_model extends CI_Model {
         $query = $this->db->get_where('item', array('id'=> $id));
         return $query->row_array();
     }
+
+    public function save_item($item) {
+        return $this->db->insert('item', $item);
+    }
 }

@@ -66,6 +66,8 @@ $route['user/orders'] = 'user/orders';
 $route['user/favorites'] = 'user/favorites';
 
 // PRODUCT ROUTE
+$route['products/(:any)/remove-favorite'] = 'product/remove_favorite/$1';
+$route['products/(:any)/favorite'] = 'product/favorite/$1';
 $route['products/(:any)'] = 'product/view/$1';
 $route['products'] = 'product';
 

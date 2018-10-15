@@ -6,6 +6,7 @@ class User extends CI_Controller {
         $this->load->model('user_model');
         $this->load->model('order_model');
         $this->load->model('product_model');
+        $this->load->model('favorite_model');
         $this->load->model('item_model');
     }
 
@@ -56,7 +57,8 @@ class User extends CI_Controller {
         $user = $this->readUser(false);
 
         if ($this->form_validation->run() == TRUE) {
-            $data['user'] = $this->user_model->update_user($user['id'], $user);
+            $data['user'] = $this->user_model->update_user($data['user']['id'], $user);
+            $this->session->set_flashdata('message', 'Dados atualizados com sucesso.');
             redirect('/', 'refresh');
         } else {
             $this->renderPage('user/edit', $data);
@@ -77,6 +79,20 @@ class User extends CI_Controller {
         $data['orders'] = $orders;
 
         $this->renderPage('user/orders', $data);
+    }
+
+    public function favorites() {
+        $data['userdata'] = $this->session->userdata();
+        $favorites = $this->favorite_model->get_favorites($data['userdata']['user.id']);
+
+        foreach($favorites as &$favorite) {
+            $product = $this->product_model->get_product($favorite['product_id']);
+            $favorite['product'] = $product;
+        }
+
+        $data['favorites'] = $favorites;
+
+        $this->renderPage('user/favorites', $data);
     }
 
     private function readUser($register) {

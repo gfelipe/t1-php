@@ -456,6 +456,31 @@ body {
   background-color: #0d0d0d !important;
   border-color: #0d0d0d !important;
 }
+.btn-yellow,
+.btn-yellow:active,
+.btn-yellow.active {
+  background-color: #ece089;
+  border-color: #ece089;
+  color: #ffffff !important;
+}
+.btn-yellow:hover,
+.btn-yellow:focus,
+.btn-yellow.focus {
+  color: #ffffff !important;
+  background-color: #d2bb17;
+  border-color: #d2bb17;
+}
+.btn-yellow:hover:before,
+.btn-yellow:focus:before,
+.btn-yellow.focus:before {
+  transform: scale(10);
+}
+.btn-yellow.disabled,
+.btn-yellow:disabled {
+  color: #ffffff !important;
+  background-color: #d2bb17 !important;
+  border-color: #d2bb17 !important;
+}
 .btn-white {
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
