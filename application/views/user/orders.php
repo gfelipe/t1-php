@@ -27,7 +27,7 @@
                             <th class="">#</th>
                             <th class="">Produto</th>
                             <th class="">Data</th>
-                            <th class="">Preço</th>
+                            <th class="">Total</th>
                             <th class="">Status</th>
                         </tr>
                     </thead>

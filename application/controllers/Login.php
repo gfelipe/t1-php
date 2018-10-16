@@ -34,13 +34,22 @@ class Login extends CI_Controller {
     }
 
     public function logout() {
-        $this->session->sess_destroy();
-        redirect('/', 'refresh');
+        if($this->isUserLogged()) {
+            $this->session->sess_destroy();
+            redirect('/', 'refresh');
+        } else {
+            $this->session->set_flashdata('error_message', 'Usuário não logado.');
+            redirect('/login', 'refresh');
+        }
     }
 
     private function renderPage($page, $data) {
         $this->load->view('templates/header', $data);
         $this->load->view($page, $data);
         $this->load->view('templates/footer', $data);
+    }
+
+    private function isUserLogged() {
+        return isset($this->session->userdata()['logged_in']) && $this->session->userdata()['logged_in'];
     }
 }

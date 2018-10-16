@@ -10,6 +10,11 @@ class Favorite_model extends CI_Model {
         return $this->db->delete('favorite');
     }
 
+    public function find_favorite($favorite) {
+        $query = $this->db->get_where('favorite', $favorite);
+        return $query->row_array();
+    }
+
     public function get_favorites($userId) {
         $query = $this->db->get_where('favorite', array('user_id' => $userId));
         return $query->result_array();

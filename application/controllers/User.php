@@ -41,58 +41,72 @@ class User extends CI_Controller {
     }
 
     public function edit() {
-        $data['userdata'] = $this->session->userdata();
-
-        $data['user'] = $this->user_model->get_user($data['userdata']['user.id']);
-
-        $this->renderPage('user/edit', $data);
+        if($this->isUserLogged()) {
+            $data['user'] = $this->user_model->get_user($this->session->userdata()['user.id']);
+            $this->renderPage('user/edit', $data);
+        } else {
+            $this->session->set_flashdata('error_message', 'Usuário não logado.');
+            redirect('/login', 'refresh');
+        }
     }
 
     public function update() {
-        $this->load->library('form_validation');
+        if($this->isUserLogged()) {
+            $this->load->library('form_validation');
 
-        $data['userdata'] = $this->session->userdata();
-        $data['user'] = $this->user_model->get_user($data['userdata']['user.id']);
+            $data['userdata'] = $this->session->userdata();
+            $data['user'] = $this->user_model->get_user($data['userdata']['user.id']);
 
-        $user = $this->readUser(false);
+            $user = $this->readUser(false);
 
-        if ($this->form_validation->run() == TRUE) {
-            $data['user'] = $this->user_model->update_user($data['user']['id'], $user);
-            $this->session->set_flashdata('message', 'Dados atualizados com sucesso.');
-            redirect('/', 'refresh');
+            if ($this->form_validation->run() == TRUE) {
+                $data['user'] = $this->user_model->update_user($data['user']['id'], $user);
+                $this->session->set_flashdata('message', 'Dados atualizados com sucesso.');
+                redirect('/', 'refresh');
+            } else {
+                $this->renderPage('user/edit', $data);
+            }
         } else {
-            $this->renderPage('user/edit', $data);
+            $this->session->set_flashdata('error_message', 'Usuário não logado.');
+            redirect('/login', 'refresh');
         }
-
     }
 
     public function orders() {
-        $data['userdata'] = $this->session->userdata();
-        $orders = $this->order_model->get_orders($data['userdata']['user.id']);
+        if($this->isUserLogged()) {
+            $orders = $this->order_model->get_orders($this->session->userdata()['user.id']);
 
-        foreach($orders as &$order) {
-            $item = $this->item_model->get_item($order['item_id']);
-            $order['item'] = $item['name'];
-            $order['amount'] = $item['price'];
+            foreach($orders as &$order) {
+                $item = $this->item_model->get_item($order['item_id']);
+                $order['item'] = $item['name'];
+                $order['amount'] = $item['price'];
 
+            }
+            $data['orders'] = $orders;
+
+            $this->renderPage('user/orders', $data);
+        } else {
+            $this->session->set_flashdata('error_message', 'Usuário não logado.');
+            redirect('/login', 'refresh');
         }
-        $data['orders'] = $orders;
-
-        $this->renderPage('user/orders', $data);
     }
 
     public function favorites() {
-        $data['userdata'] = $this->session->userdata();
-        $favorites = $this->favorite_model->get_favorites($data['userdata']['user.id']);
+        if($this->isUserLogged()) {
+            $favorites = $this->favorite_model->get_favorites($this->session->userdata()['user.id']);
 
-        foreach($favorites as &$favorite) {
-            $product = $this->product_model->get_product($favorite['product_id']);
-            $favorite['product'] = $product;
+            foreach($favorites as &$favorite) {
+                $product = $this->product_model->get_product($favorite['product_id']);
+                $favorite['product'] = $product;
+            }
+
+            $data['favorites'] = $favorites;
+
+            $this->renderPage('user/favorites', $data);
+        } else {
+            $this->session->set_flashdata('error_message', 'Usuário não logado.');
+            redirect('/login', 'refresh');
         }
-
-        $data['favorites'] = $favorites;
-
-        $this->renderPage('user/favorites', $data);
     }
 
     private function readUser($register) {
@@ -137,5 +151,9 @@ class User extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view($page, $data);
         $this->load->view('templates/footer', $data);
+    }
+
+    private function isUserLogged() {
+        return isset($this->session->userdata()['logged_in']) && $this->session->userdata()['logged_in'];
     }
 }

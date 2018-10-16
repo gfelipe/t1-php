@@ -71,6 +71,10 @@ $route['products/(:any)/favorite'] = 'product/favorite/$1';
 $route['products/(:any)'] = 'product/view/$1';
 $route['products'] = 'product';
 
+// ORDER ROUTE
+$route['order/buy'] = '/order/buy';
+
+
 // DEFAULT PAGE ROUTE
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';

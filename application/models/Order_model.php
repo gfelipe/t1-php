@@ -14,4 +14,9 @@ class Order_model extends CI_Model {
         $query = $this->db->get_where('user_order', array('user_id' => $userId));
         return $query->result_array();
     }
+
+    public function save_order($order) {
+        $this->db->insert('user_order', $order);
+        return $this->db->insert_id();
+    }
 }

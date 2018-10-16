@@ -20,7 +20,21 @@
     <link rel="stylesheet" href="/assets/theme/css/style.css">
     <link rel="stylesheet" href="/assets/mobirise-gallery/style.css">
     <link rel="stylesheet" href="/assets/mobirise/css/mbr-additional.css" type="text/css">
+    <style>
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+        }
 
+        .alert-warning {
+            color: #856404;
+            background-color: #fff3cd;
+        }
+
+        .alert-fix {
+            margin-top: 76px; margin-bottom: 0px;
+        }
+    </style>
 
 
 </head>
@@ -49,17 +63,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-                <?php if (isset($userdata['logged_in']) && isset($userdata['profile']) && $userdata['logged_in'] && $userdata['profile'] == "admin"): ?>
+                <?php if (isset($this->session->userdata()['logged_in']) && isset($this->session->userdata()['profile']) && $this->session->userdata()['logged_in'] && $this->session->userdata()['profile'] == "admin"): ?>
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="index.php/admin">ADMIN</a>
                 </li>
                 <?php endif; ?>
-                <?php if (isset($userdata['logged_in']) && $userdata['logged_in']): ?>
+                <?php if (isset($this->session->userdata()['logged_in']) && $this->session->userdata()['logged_in']): ?>
                 <li class="nav-item dropdown open">
                     <a class="nav-link link text-white dropdown-toggle display-4" href="#"
                        data-toggle="dropdown-submenu" aria-expanded="true"
                        style="text-align: center;justify-content: center;">
-                        <?php echo $userdata['user']?>
+                        <?php echo $this->session->userdata()['user']?>
                     </a>
                     <div class="dropdown-menu">
                         <a class="text-white dropdown-item display-4" href="/user/edit">Alterar dados</a>
@@ -71,7 +85,7 @@
             </ul>
 
             <div class="navbar-buttons mbr-section-btn">
-                <?php if (isset($userdata['logged_in']) && $userdata['logged_in']): ?>
+                <?php if (isset($this->session->userdata()['logged_in']) && $this->session->userdata()['logged_in']): ?>
                     <a class="btn btn-sm btn-white-outline display-4" href="/logout">Logout</a>
                 <?php else: ?>
                     <a class="btn btn-sm btn-white-outline display-4" href="/login">Login</a>
@@ -81,11 +95,6 @@
         </div>
     </nav>
 </section>
-<style>
-    .alert-fix {
-        margin-top: 76px; margin-bottom: 0px;
-    }
-</style>
 <?php if($this->session->flashdata('message')): ?>
     <div class="alert alert-success alert-fix" role="alert">
         <?php echo $this->session->flashdata('message') ?>

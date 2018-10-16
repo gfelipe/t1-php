@@ -35,7 +35,7 @@
                                                             style="display: none;">$192</span></div>
                                                 <?php echo $favorite['product']['description']?>
                                                 <div class="mbr-section-btn" buttons="0" style="display: none;">
-                                                    <a class="btn btn-black display-7" href="/product/<?php echo $favorite['product']['id']?>/buy">Comprar!</a>
+                                                    <a class="btn btn-black display-7" href="/order/buy?product_id=<?php echo $favorite['product']['id']?>">Comprar!</a>
                                                     <a class="btn btn-yellow display-7" href="/products/<?php echo $favorite['id']?>/remove-favorite">Remover Favorito!</a>
                                                 </div>
                                                 <div class="mbr-section-btn" buttons="0" style="display: none;">

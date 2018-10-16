@@ -34,7 +34,7 @@
                                                         style="display: none;">$192</span></div>
                                             <?php echo $product['description']?>
                                             <div class="mbr-section-btn" buttons="0" style="display: none;">
-                                                <a class="btn btn-black display-7" href="/product/<?php echo $product['id']?>/buy">Comprar!</a>
+                                                <a class="btn btn-black display-7" href="/order/buy?product_id=<?php echo $product['id']?>">Comprar!</a>
                                                 <a class="btn btn-yellow display-7" href="/products/<?php echo $product['id']?>/favorite">Favoritar!</a>
                                             </div>
                                             <div class="mbr-section-btn" buttons="0" style="display: none;">

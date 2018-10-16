@@ -7,6 +7,7 @@ class Item_model extends CI_Model {
     }
 
     public function save_item($item) {
-        return $this->db->insert('item', $item);
+        $this->db->insert('item', $item);
+        return $this->db->insert_id();
     }
 }

@@ -71,9 +71,9 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
 
                 </div>
-                <div class="forgot">
-                    <a href="/forgot">Esqueceu a senha?</a>
-                </div>
+<!--                <div class="forgot">-->
+<!--                    <a href="/forgot">Esqueceu a senha?</a>-->
+<!--                </div>-->
                 <div class="unregistered">
                     <a href="/register">Não tem cadastro? Clique aqui</a>
                 </div>
