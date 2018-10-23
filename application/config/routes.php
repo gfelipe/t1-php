@@ -52,6 +52,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // $route['default_controller'] = 'welcome';
 
 
+// ADMIN ROUTE
+$route['admin'] = 'admin';
+$route['admin/products'] = 'admin/products';
+$route['admin/products/create'] = 'admin/create_product';
+$route['admin/products/edit/(:any)'] = 'admin/edit_product/$1';
+
 // LOGIN ROUTE
 $route['doLogin'] = 'login/doLogin';
 $route['logout'] = 'login/logout';

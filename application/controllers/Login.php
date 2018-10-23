@@ -24,7 +24,7 @@ class Login extends CI_Controller {
         $user = $this->user_model->find_user($email, $password);
 
         if ($user) {
-            $sessionUser = array('user' => $user['name'], 'user.id' => $user['id'], 'logged_in' => true);
+            $sessionUser = array('user' => $user['name'], 'user.id' => $user['id'], 'profile' => $user['profile'], 'logged_in' => true);
             $this->session->set_userdata($sessionUser);
             redirect('/', 'refresh');
         } else {

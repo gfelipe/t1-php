@@ -63,9 +63,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-                <?php if (isset($this->session->userdata()['logged_in']) && isset($this->session->userdata()['profile']) && $this->session->userdata()['logged_in'] && $this->session->userdata()['profile'] == "admin"): ?>
+                <?php if (isset($this->session->userdata()['logged_in']) && isset($this->session->userdata()['profile']) && $this->session->userdata()['logged_in'] && $this->session->userdata()['profile'] == "ADMIN"): ?>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="index.php/admin">ADMIN</a>
+                    <a class="nav-link link text-white display-4" href="/admin">ADMIN</a>
                 </li>
                 <?php endif; ?>
                 <?php if (isset($this->session->userdata()['logged_in']) && $this->session->userdata()['logged_in']): ?>
@@ -79,6 +79,7 @@
                         <a class="text-white dropdown-item display-4" href="/user/edit">Alterar dados</a>
                         <a class="text-white dropdown-item display-4" href="/user/orders">Meus pedidos</a>
                         <a class="text-white dropdown-item display-4" href="/user/favorites">Favoritos</a>
+                        <a class="text-white dropdown-item display-4" href="/user/favorites"><?php echo $this->session->userdata()['profile'] ?></a>
                     </div>
                 </li>
                 <?php endif; ?>
