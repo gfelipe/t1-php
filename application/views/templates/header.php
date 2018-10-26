@@ -79,7 +79,6 @@
                         <a class="text-white dropdown-item display-4" href="/user/edit">Alterar dados</a>
                         <a class="text-white dropdown-item display-4" href="/user/orders">Meus pedidos</a>
                         <a class="text-white dropdown-item display-4" href="/user/favorites">Favoritos</a>
-                        <a class="text-white dropdown-item display-4" href="/user/favorites"><?php echo $this->session->userdata()['profile'] ?></a>
                     </div>
                 </li>
                 <?php endif; ?>

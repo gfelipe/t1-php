@@ -22,6 +22,18 @@ class User_model extends CI_Model {
         return $this->db->update('user', $user);
     }
 
+    public function change_user_status($id, $enabled) {
+        $this->db->where('id', $id);
+        return $this->db->update('user', array('enabled' => $enabled));
+    }
+
+    public function list_user() {
+        $this->db->select('*');
+        $this->db->select('DATE_FORMAT(birthday, "%d/%m/%Y") as formattedBirthday', FALSE);
+        $query = $this->db->get('user');
+        return $query->result_array();
+    }
+
     public function get_user($id) {
         $this->db->select('*');
         $this->db->select('DATE_FORMAT(birthday, "%d/%m/%Y") as formattedBirthday', FALSE);

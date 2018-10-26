@@ -32,7 +32,9 @@
                                                         class="shop-item-price mbr-fonts-style display-5">R$ <?php echo $product['price']?></span><span
                                                         class="oldprice mbr-fonts-style display-7"
                                                         style="display: none;">$192</span></div>
-                                            <?php echo $product['description']?>
+                                            <div class="card-description">
+                                                <?php echo $product['description']?>
+                                            </div>
                                             <div class="mbr-section-btn" buttons="0" style="display: none;">
                                                 <a class="btn btn-black display-7" href="/order/buy?product_id=<?php echo $product['id']?>">Comprar!</a>
                                                 <a class="btn btn-yellow display-7" href="/products/<?php echo $product['id']?>/favorite">Favoritar!</a>

@@ -34,6 +34,11 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        .alert-fix {
+            padding-left: 260px;
+        }
+    </style>
 </head>
 
 <body>
@@ -48,7 +53,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Infinity - Admin</a>
+            <a class="navbar-brand" href="/admin">Infinity - Admin</a>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
@@ -85,17 +90,23 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-user fa-fw"></i> Usuários</a>
+                        <a href="/admin/users"><i class="fa fa-user fa-fw"></i> Usuários</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Dashboard</h1>
-            </div>
-            <!-- /.col-lg-12 -->
+    <?php if($this->session->flashdata('message')): ?>
+        <div class="alert alert-success alert-fix" role="alert">
+            <?php echo $this->session->flashdata('message') ?>
         </div>
+    <?php elseif($this->session->flashdata('warning_message')): ?>
+        <div class="alert alert-warning alert-fix" role="alert">
+            <?php echo $this->session->flashdata('warning_message') ?>
+        </div>
+    <?php elseif($this->session->flashdata('error_message')): ?>
+        <div class="alert alert-danger alert-fix" role="alert">
+            <?php echo $this->session->flashdata('error_message') ?>
+        </div>
+    <?php endif;?>
+    <div id="page-wrapper">

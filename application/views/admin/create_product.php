@@ -9,10 +9,15 @@
         box-sizing: border-box;
     }
 </style>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Novo Produto</h1>
+    </div>
+</div>
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
-
+        <?php echo form_open_multipart('/admin/products/save'); ?>
         <div class="panel panel-default">
             <div class="panel-heading">
                 Informações do produto
@@ -38,23 +43,12 @@
                     <label for="description">Descrição</label>
                     <textarea name="description" id="description" rows="10" placeholder="Descrição"><?php echo isset($product['description']) ? $product['description'] : NULL?></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Imagem 1</label>
-                    <input type="file" class="form-control-file" id="image-1" name="image-1">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Imagem 2</label>
-                    <input type="file" class="form-control-file" id="image-1" name="image-1">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Imagem 3</label>
-                    <input type="file" class="form-control-file" id="image-1" name="image-1">
-                </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
             <!-- /.panel-body -->
         </div>
         <!-- /.panel -->
+        <?php echo form_close(); ?>
     </div>
     <!-- /.col-lg-12 -->
 </div>

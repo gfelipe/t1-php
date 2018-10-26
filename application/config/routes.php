@@ -56,7 +56,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['admin'] = 'admin';
 $route['admin/products'] = 'admin/products';
 $route['admin/products/create'] = 'admin/create_product';
+$route['admin/products/save'] = 'admin/save_product';
 $route['admin/products/edit/(:any)'] = 'admin/edit_product/$1';
+$route['admin/products/update/(:any)'] = 'admin/update_product/$1';
+$route['admin/products/remove/(:any)'] = 'admin/remove_product/$1';
+$route['admin/products/add_image/(:any)'] = 'admin/add_image/$1';
+$route['admin/products/remove_image/(:any)'] = 'admin/remove_image/$1';
+$route['admin/users'] = 'admin/users';
+$route['admin/users/disable/(:any)'] = 'admin/disable_user/$1';
+$route['admin/users/enable/(:any)'] = 'admin/enable_user/$1';
+
 
 // LOGIN ROUTE
 $route['doLogin'] = 'login/doLogin';
@@ -80,10 +89,9 @@ $route['products'] = 'product';
 // ORDER ROUTE
 $route['order/buy'] = '/order/buy';
 
-
 // DEFAULT PAGE ROUTE
-$route['(:any)'] = 'pages/view/$1';
-$route['default_controller'] = 'pages/view';
+$route['(:any)'] = 'home/view';
+$route['default_controller'] = 'home/view';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -6,6 +6,7 @@ class Order extends CI_Controller {
         $this->load->model('user_model');
         $this->load->model('order_model');
         $this->load->model('product_model');
+        $this->load->model('image_model');
         $this->load->model('item_model');
     }
 
@@ -32,13 +33,14 @@ class Order extends CI_Controller {
             $user = $this->user_model->get_user($this->session->userdata()['user.id']);
 
             $product = $this->product_model->get_product($this->input->get('product_id'));
+            $images = $this->image_model->find_images(array('product_id' => $product['id']));
 
             $item = array(
                 'name' => $product['name'],
                 'description' => $product['description'],
                 'price' => $product['price'],
-                'image' => $product['image'],
-                'product_id' => $product['id'],
+                'image' => $images ? $images[0]['src'] : "",
+                'product_id' => $product['id']
             );
 
             $itemId = $this->item_model->save_item($item);

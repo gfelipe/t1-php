@@ -10,6 +10,11 @@ class Favorite_model extends CI_Model {
         return $this->db->delete('favorite');
     }
 
+    public function remove_favorite_by_product($id) {
+        $this->db->where('product_id', $id);
+        return $this->db->delete('favorite');
+    }
+
     public function find_favorite($favorite) {
         $query = $this->db->get_where('favorite', $favorite);
         return $query->row_array();

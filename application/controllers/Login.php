@@ -24,9 +24,14 @@ class Login extends CI_Controller {
         $user = $this->user_model->find_user($email, $password);
 
         if ($user) {
-            $sessionUser = array('user' => $user['name'], 'user.id' => $user['id'], 'profile' => $user['profile'], 'logged_in' => true);
-            $this->session->set_userdata($sessionUser);
-            redirect('/', 'refresh');
+            if ($user['enabled']) {
+                $sessionUser = array('user' => $user['name'], 'user.id' => $user['id'], 'profile' => $user['profile'], 'logged_in' => true);
+                $this->session->set_userdata($sessionUser);
+                redirect('/', 'refresh');
+            } else {
+                $this->session->set_flashdata('error_message', 'Usuário desabilitado.');
+                redirect('/login', 'refresh');
+            }
         } else {
             $data['error'] = "Usuário ou senha inválidos.";
             $this->renderPage('login/index', $data);

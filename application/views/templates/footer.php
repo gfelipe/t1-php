@@ -10,62 +10,49 @@
 
         <div class="row justify-content-center pt-5 align-items-start">
             <div class="card p-3 col-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card-wrapper ">
-                    <div class="card-img">
-                        <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="menu.html" class="btn btn-white display-4">
-                                Live Demo</a></div>
-                        <img src="/assets/images/menu-both-1200x800.png" alt="Mobirise" title="" media-simple="true">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title  align-center mbr-fonts-style display-5">
-                            Menu</h4>
+                <a href="#">
+                    <div class="card-wrapper ">
+                        <div class="card-box">
+                            <h4 class="card-title  align-center mbr-fonts-style display-5">
+                                Sobre nós</h4>
 
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="card p-3 col-12 col-md-6 col-lg-4 col-xl-3">
+                <a href="#">
+
                 <div class="card-wrapper">
-                    <div class="card-img">
-                        <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="headers.html" class="btn btn-white display-4">
-                                Live Demo</a></div>
-                        <img src="/assets/images/headers-1200x800.png" alt="Mobirise" title="" media-simple="true">
-                    </div>
                     <div class="card-box">
                         <h4 class="card-title mbr-fonts-style align-center display-5">
-                            Headers</h4>
+                            Institucional</h4>
 
                     </div>
                 </div>
+                </a>
             </div>
 
             <div class="card p-3 col-12 col-md-6 col-lg-4 col-xl-3">
+                <a href="#">
+
                 <div class="card-wrapper">
-                    <div class="card-img">
-                        <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="sliders-galleries.html" class="btn btn-white display-4">
-                                Live Demo</a></div>
-                        <img src="/assets/images/slidersgalleries-1200x800.jpg" alt="Mobirise" title="" media-simple="true">
-                    </div>
                     <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style align-center display-5">Sliders &amp; Galleries</h4>
+                        <h4 class="card-title mbr-fonts-style align-center display-5">Blog</h4>
 
                     </div>
                 </div>
+                </a>
             </div>
             <div class="card p-3 col-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="features.html" class="btn btn-white display-4">Live Demo</a></div>
-                        <img src="/assets/images/features-1200x800.png" alt="Mobirise" title="" media-simple="true">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style align-center display-5">Features</h4>
+                <a href="#">
+                    <div class="card-wrapper">
+                        <div class="card-box">
+                            <h4 class="card-title mbr-fonts-style align-center display-5">Contato</h4>
 
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -80,7 +67,7 @@
                 </a>
             </div>
             <div class="col-md-offset-4 col-md-4 mbr-text mbr-fonts-style mbr-light display-7">
-                © 2018 <a href="https://mobirise.com" class="text-secondary">Infinity</a></div>
+                © 2018 <a href="#" class="text-secondary">Infinity</a></div>
             <div class="social-media col-md-4 col-sm-12">
                 <ul>
                     <li>
