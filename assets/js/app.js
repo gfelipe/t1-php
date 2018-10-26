@@ -15,6 +15,9 @@ $(function(){
     $('#zipCode').mask('00000-000');
     $('#cpf').mask('000.000.000-00', {reverse: false});
 
+    $('.catalog-price').mask('000.000.000,00', {reverse: true});
+
+
     $("#zipCode").keyup(function () {
         if ($(this).val().length === 9) {
             const cepInfo = getCep($(this).val());

@@ -1,5 +1,5 @@
 $(function(){
-    $('#price').mask('000.000.000.000.000,00', {reverse: true});
+    $('#price').mask('0000000.00', {reverse: true});
 });
 
 function removeImage(id) {

@@ -40,6 +40,7 @@ class Order extends CI_Controller {
                 'description' => $product['description'],
                 'price' => $product['price'],
                 'image' => $images ? $images[0]['src'] : "",
+                'sku' => $product['sku'],
                 'product_id' => $product['id']
             );
 

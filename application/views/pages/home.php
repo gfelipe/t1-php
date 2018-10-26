@@ -28,12 +28,13 @@
                                         <span class="onsale mbr-fonts-style display-7" data-onsale="false" style="display: none;">-50%</span>
                                         <div class="sidebar_wraper">
                                             <h4 class="item-title mbr-fonts-style mbr-text display-5"><?php echo $product['name']?></h4>
-                                            <div class="price-block"><span
-                                                        class="shop-item-price mbr-fonts-style display-5">R$ <?php echo $product['price']?></span><span
+                                            <div class="price-block">R$ <span
+                                                        class="shop-item-price mbr-fonts-style display-5 catalog-price"><?php echo $product['price']?></span><span
                                                         class="oldprice mbr-fonts-style display-7"
                                                         style="display: none;">$192</span></div>
                                             <div class="card-description">
-                                                <?php echo $product['description']?>
+                                                <p><?php echo $product['description']?></p><br>
+                                                <p>Código do produto: <strong><?php echo $product['sku']?></strong></p>
                                             </div>
                                             <div class="mbr-section-btn" buttons="0" style="display: none;">
                                                 <a class="btn btn-black display-7" href="/order/buy?product_id=<?php echo $product['id']?>">Comprar!</a>

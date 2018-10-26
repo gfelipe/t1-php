@@ -63,18 +63,18 @@
         <table class="table table-bordered">
             <thead>
             <tr>
+                <th><h4></h4></th>
                 <th><h4>Sku</h4></th>
                 <th><h4>Nome</h4></th>
-                <th><h4>Quantidade</h4></th>
                 <th><h4>Preço</h4></th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td><?php echo $item['product_id'] ?></td>
+                <td><img src="<?php echo $item['image'] ?>" alt="" style="max-width: 100%;max-height: 5vh;"></td>
+                <td><?php echo $item['sku'] ?></td>
                 <td><a href="/product/"><?php echo $item['name'] ?></a></td>
-                <td class="text-right">1</td>
-                <td class="text-right">R$ <?php echo $item['price'] ?></td>
+                <td class="text-right">R$ <span class="catalog-price"><?php echo $item['price'] ?></span></td>
             </tr>
             </tbody>
         </table>

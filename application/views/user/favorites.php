@@ -11,6 +11,13 @@
     </div>
 </section>
 
+<style>
+    .mini-img-wrapper img {
+        max-width: 100%;
+        max-height: 20vh;
+    }
+</style>
+
 <section class="mbr-gallery cid-qyXC3wOLIJ" once="shops" id="shop2-5h" data-rv-view="2472">
     <?php if($favorites): ?>
     <div>
@@ -33,7 +40,10 @@
                                                             class="shop-item-price mbr-fonts-style display-5">R$ <?php echo $favorite['product']['price']?></span><span
                                                             class="oldprice mbr-fonts-style display-7"
                                                             style="display: none;">$192</span></div>
-                                                <?php echo $favorite['product']['description']?>
+                                                <div class="card-description">
+                                                    <p><?php echo $favorite['product']['description']?></p><br>
+                                                    <p>Código do produto: <strong><?php echo $favorite['product']['sku']?></strong></p>
+                                                </div>
                                                 <div class="mbr-section-btn" buttons="0" style="display: none;">
                                                     <a class="btn btn-black display-7" href="/order/buy?product_id=<?php echo $favorite['product']['id']?>">Comprar!</a>
                                                     <a class="btn btn-yellow display-7" href="/products/<?php echo $favorite['id']?>/remove-favorite">Remover Favorito!</a>

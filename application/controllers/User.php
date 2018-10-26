@@ -8,6 +8,7 @@ class User extends CI_Controller {
         $this->load->model('product_model');
         $this->load->model('favorite_model');
         $this->load->model('item_model');
+        $this->load->model('image_model');
     }
 
     public function register() {
@@ -97,6 +98,8 @@ class User extends CI_Controller {
 
             foreach($favorites as &$favorite) {
                 $product = $this->product_model->get_product($favorite['product_id']);
+                $images = $this->image_model->find_images(array('product_id' => $favorite['product_id']));
+                $product['image'] = $images[0]['src'];
                 $favorite['product'] = $product;
             }
 
@@ -117,7 +120,7 @@ class User extends CI_Controller {
             'cpf' => trim($this->input->post('cpf')) ? str_replace("-", "", str_replace(".", "", $this->input->post('cpf'))) : NULL,
             'birthday' => trim($this->input->post('birthday')) ? $this->input->post('birthday') : NULL,
             'address' => trim($this->input->post('address')) ? $this->input->post('address') : NULL,
-            'zipCode' => trim($this->input->post('zipCode')) ? $this->input->post('zipCode') : NULL,
+            'zipCode' => trim($this->input->post('zipCode')) ? str_replace("-", "", $this->input->post('zipCode')) : NULL,
             'number' => trim($this->input->post('number')) ? $this->input->post('number') : NULL,
             'complement' => trim($this->input->post('complement')) ? $this->input->post('complement') : NULL,
             'neighborhood' => trim($this->input->post('neighborhood')) ? $this->input->post('neighborhood') : NULL,

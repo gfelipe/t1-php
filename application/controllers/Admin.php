@@ -51,10 +51,8 @@ class Admin extends CI_Controller {
         $this->verifyAdmin();
 
         $config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
         $config['max_size']             = 2048000;
-//        $config['max_width']            = 1024;
-//        $config['max_height']           = 768;
 
         $this->load->library('upload');
         $this->upload->initialize($config);
