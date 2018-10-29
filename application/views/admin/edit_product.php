@@ -8,6 +8,9 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
+    .validation-error {
+        color: red;
+    }
 </style>
 <div class="row">
     <div class="col-lg-12">
@@ -17,7 +20,7 @@
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
-        <div style="color: red;">
+        <div class="validation-error">
             <?php echo isset($upload_error) ? $upload_error : "" ?>
         </div>
 

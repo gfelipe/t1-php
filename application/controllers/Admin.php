@@ -28,22 +28,52 @@ class Admin extends CI_Controller {
 
     public function save_product() {
         $this->verifyAdmin();
+        $this->load->library('form_validation');
 
-        $product = array(
-            'sku' => $this->input->post('sku'),
-            'name' => $this->input->post('name'),
-            'description' => $this->input->post('description'),
-            'price' => $this->input->post('price')
-        );
+        $product = $this->readProduct();
 
-        if ( false ) {
-            $this->renderPage('admin/create_product', []);
-        } else {
-
+        if ($this->form_validation->run() == TRUE) {
             $this->product_model->save_product($product);
 
             $this->session->set_flashdata('message', 'Produto criado com sucesso.');
             redirect('/admin/products', 'refresh');
+        } else {
+            $data['product'] = $product;
+            $this->renderPage('admin/create_product', $data);
+        }
+
+        if ( false ) {
+
+        } else {
+
+
+        }
+    }
+
+    public function edit_product($id) {
+        $this->verifyAdmin();
+
+        $data['product'] = $this->product_model->get_product($id);
+        $data['images'] = $this->image_model->find_images(array('product_id' => $id));
+        $this->renderPage('admin/edit_product', $data);
+    }
+
+    public function update_product() {
+        $this->verifyAdmin();
+        $this->load->library('form_validation');
+
+        $product = $this->readProduct();
+
+        if ($this->form_validation->run() == TRUE) {
+            $this->product_model->update_product($this->input->post('id'), $product);
+
+            $this->session->set_flashdata('message', 'Produto atualizado com sucesso.');
+            redirect('/admin/products', 'refresh');
+        } else {
+            $product['id'] = $this->input->post('id');
+            $data['product'] = $product;
+            $data['images'] = $this->image_model->find_images(array('product_id' => $product['id']));
+            $this->renderPage('admin/edit_product', $data);
         }
     }
 
@@ -95,35 +125,6 @@ class Admin extends CI_Controller {
         redirect('/admin/products', 'refresh');
     }
 
-    public function edit_product($id) {
-        $this->verifyAdmin();
-
-        $data['product'] = $this->product_model->get_product($id);
-        $data['images'] = $this->image_model->find_images(array('product_id' => $id));
-        $this->renderPage('admin/edit_product', $data);
-    }
-
-    public function update_product() {
-        $this->verifyAdmin();
-
-        $product = array(
-            'sku' => $this->input->post('sku'),
-            'name' => $this->input->post('name'),
-            'description' => $this->input->post('description'),
-            'price' => $this->input->post('price')
-        );
-
-        if ( false ) {
-            $this->renderPage('admin/create_product', []);
-        } else {
-
-            $this->product_model->update_product($this->input->post('id'), $product);
-
-            $this->session->set_flashdata('message', 'Produto atualizado com sucesso.');
-            redirect('/admin/products', 'refresh');
-        }
-    }
-
     public function users() {
         $this->verifyAdmin();
 
@@ -147,6 +148,28 @@ class Admin extends CI_Controller {
 
         $this->session->set_flashdata('message', 'Usuário habilitado com sucesso.');
         redirect('/admin/users', 'refresh');
+    }
+
+    private function readProduct() {
+
+        $product = array(
+            'sku' => $this->input->post('sku'),
+            'name' => $this->input->post('name'),
+            'description' => $this->input->post('description'),
+            'price' => $this->input->post('price')
+        );
+
+        $this->setInputRules();
+
+        return $product;
+    }
+
+    private function setInputRules() {
+
+        $this->form_validation->set_rules('sku', 'Sku', 'trim|required');
+        $this->form_validation->set_rules('name', 'Nome', 'trim|required');
+        $this->form_validation->set_rules('price', 'Preço', 'trim|required');
+
     }
 
     private function renderPage($page, $data) {

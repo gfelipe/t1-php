@@ -2,17 +2,8 @@
 class User_model extends CI_Model {
 
     public function save_user($user) {
-        $db_debug = $this->db->db_debug;
-        $this->db->db_debug = FALSE;
-
         $user['birthday'] = date('Y-m-d', strtotime(str_replace("/", "-", $user['birthday'])));
-
-        $insert = $this->db->insert('user', $user);
-        $error = $this->db->error();
-
-        $this->db->db_debug = $db_debug;
-
-        return $error;
+        return $this->db->insert('user', $user);
     }
 
     public function update_user($id, $user) {

@@ -8,6 +8,9 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
+    .validation-error {
+        color: red;
+    }
 </style>
 <div class="row">
     <div class="col-lg-12">

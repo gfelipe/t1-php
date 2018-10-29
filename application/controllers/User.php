@@ -22,18 +22,8 @@ class User extends CI_Controller {
         $user = $this->readUser(true);
 
         if ($this->form_validation->run() == TRUE) {
-            try {
-                $result = $this->user_model->save_user($user);
-
-                if ($result['code'] == 0) {
-                    redirect('/login', 'refresh');
-                } else {
-
-                }
-
-            } catch (Exception $e) {
-                echo $e;
-            }
+            $this->user_model->save_user($user);
+            redirect('/login', 'refresh');
         } else {
             $data['user'] = $user;
             $this->renderPage('user/register', $data);
